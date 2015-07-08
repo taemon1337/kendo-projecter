@@ -1,0 +1,37 @@
+<div>
+    <div id="form-grid"
+        data-role="grid"
+        data-editable="popup"
+        data-toolbar="[{ name: 'create', text: 'Add New Form' }]"
+        data-bind="source: forms, events: { dataBound: dataBound }"
+        data-columns="[
+            {
+                title: 'Id',
+                field: '_id'
+            },
+            {
+                title: 'Name',
+                field: 'name',
+                editor: editors.text
+            },
+            {
+                title: 'Description',
+                field: 'description',
+                editor: editors.textarea
+            },
+            {
+                title: 'Wrapper Name',
+                field: 'wrapper',
+                editor: editors.text
+            },
+            {
+                title: 'Fields',
+                field: 'form_fields',
+                editor: editors.json,
+                template: '#= fields.form_fields.template(form_fields) #'
+            },
+            {
+                command: [{ name: 'show', text: 'Show' }]
+            }
+        ]"></div>
+</div>
