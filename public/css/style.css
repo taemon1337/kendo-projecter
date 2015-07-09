@@ -1,4 +1,4 @@
-.full {
+.full,.k-edit-form-container {
     width: 100%;
 }
 .k-window .row, .k-window .row * { box-sizing: border-box; }

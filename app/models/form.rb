@@ -2,8 +2,6 @@ class Form
     include Mongoid::Document
     include Mongoid::Timestamps
     
-    attr_protected :wrapper, :form_fields
-    
     field :name, type: String
     field :description, type: String
     field :wrapper_id, type: String

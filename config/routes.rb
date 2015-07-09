@@ -3,8 +3,10 @@ Rails.application.routes.draw do
   get 'pages/home'
   get 'pages/admin'
 
-    resources :forms
+  scope '/api' do
+    resources :forms, :only => [:index,:create,:update,:destroy]
+  end
     
-    root :to => "pages#admin"
+  root :to => "pages#admin"
 
 end
