@@ -1,0 +1,40 @@
+<div>
+    <div id="group-grid"
+        data-role="grid"
+        data-editable="{
+            mode: 'popup',
+            confirmation: true,
+            window: {
+              height: '70%',
+              width: '60%',
+              position: { 
+                top: '7%',
+                left: '7%'
+              },
+              actions: ['minimize','maximize','close']
+            }
+        }"
+        data-toolbar="[{ name: 'create', text: 'Add New Group' }]"
+        data-bind="source: groups, events: { dataBound: dataBound }"
+        data-columns="[
+            {
+                title: 'Name',
+                field: 'name',
+                editor: editors.text
+            },
+            {
+                title: 'Description',
+                field: 'description',
+                editor: editors.textarea
+            },
+            {
+                title: 'Users',
+                field: 'usernames',
+                editor: editors.users,
+                template: '#= fields.users.template(usernames) #'
+            },
+            {
+                command: [{ name: 'show', text: 'Show' },{ name: 'edit', text: 'Edit' },{ name: 'destroy', text: 'Delete' }]
+            }
+        ]"></div>
+</div>

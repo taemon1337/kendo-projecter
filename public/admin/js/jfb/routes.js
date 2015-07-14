@@ -1,6 +1,6 @@
 define(function(require) {
     return {
-        app: "admin/js",
+        app: "/admin/js",
         api: "/api",
     } 
 });

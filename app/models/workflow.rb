@@ -1,16 +1,27 @@
 class Workflow
     include Mongoid::Document
     include Mongoid::Timestamps
-    
-    field :title, type: String
+
+    field :name, type: String
     field :description, type: String
     
-    field :tasks, type: Array, default: []
+    field :task_ids, type: Array, default: []
+    
+    embeds_one :ownership, as: :ownable
     
     validates :title, presence: true, uniqueness: true, allow_blank: false
+#    validates :owner_id, presence: true, allow_blank: false
     
     def tasks
-       Task.any_in(title: self.tasks) 
+       Task.find(self.task_ids)
+    end
+    
+    def tasknames
+       self.tasks.map(&:name) 
+    end
+
+    def as_json(opts={})
+        super({ :methods => [:tasknames] }.merge(opts))
     end
     
 end

@@ -1,0 +1,59 @@
+<div>
+    <div id="wrapper-grid"
+        data-role="grid"
+        data-editable="{
+            mode: 'popup',
+            confirmation: true,
+            window: {
+              height: '70%',
+              width: '60%',
+              position: { 
+                top: '7%',
+                left: '7%'
+              },
+              actions: ['minimize','maximize','close']
+            }
+        }"
+        data-toolbar="[{ name: 'create', text: 'Add New Wrapper' }]"
+        data-bind="source: wrappers, events: { dataBound: dataBound }"
+        data-columns="[
+            {
+                title: 'Name',
+                field: 'name',
+                editor: editors.text
+            },
+            {
+                title: 'Description',
+                field: 'description',
+                editor: editors.textarea
+            },
+            {
+                title: 'Form Wrapper',
+                field: 'form_wrapper',
+                editor: editors.textarea
+            },
+            {
+                title: 'Field Wrapper',
+                field: 'field_wrapper',
+                editor: editors.textarea
+            },
+            {
+                title: 'Form Selector',
+                field: 'form_selector',
+                editor: editors.text
+            },
+            {
+                title: 'Field Selector',
+                field: 'field_selector',
+                editor: editors.text
+            },
+            {
+                title: 'Title Selector',
+                field: 'title_selector',
+                editor: editors.text
+            },
+            {
+                command: [{ name: 'show', text: 'Show' },{ name: 'edit', text: 'Edit' },{ name: 'destroy', text: 'Delete' }]
+            }
+        ]"></div>
+</div>

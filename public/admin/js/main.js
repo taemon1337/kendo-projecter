@@ -18,11 +18,15 @@ requirejs.config({
 });
 
 require([
+  "bindings/all",
   "editors/all",
+  "datasources/all",
+  "helpers/all",
   "jfb/app"
-], function(editors, jfb) {
+], function(bindings, editors, datasources, helpers, jfb) {
   
   window.editors = editors;
+  window.datasources = datasources;
   
   jfb.start();
 });

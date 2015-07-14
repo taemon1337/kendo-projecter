@@ -1,14 +1,16 @@
 class Project
     include Mongoid::Document
     include Mongoid::Timestamps
-    
-    field :title, type: String
+
+    field :name, type: String
     field :description, type: String
     
-    field :workflows, type: Array, default: []
-    field :owners, type: Array, default: []
-    
-    validates :title, presence: true, length: { in: 5..20 }, format: { with: /^[a-zA-Z0-9 \-]+$/ }
+    field :workflow_ids, type: Array, default: []
+    field :group_ids, type: Array, default: []
+
+    embeds_one :ownership, as: :ownable
+
+    validates :name, presence: true, length: { in: 5..20 }, format: { with: /^[a-zA-Z0-9 \-]+$/ }
     
 #    embeds_one :history
 #    embeds_one :calendar
@@ -16,11 +18,23 @@ class Project
 #    embeds_many :comments
 
     def workflows
-        Workflow.any_in(title: self.workflows)
+        Workflow.find(self.workflow_ids)
+    end
+    
+    def workflownames
+        self.workflows.map(&:name) 
     end
 
-    def owners
-       Group.any_in(name: self.owners) 
+    def groups
+        Group.find(self.group_ids)
+    end
+    
+    def groupnames
+        self.groups.map(&:name) 
+    end
+    
+    def as_json(opts={})
+        super({ :methods => [:workflownames,:groupnames] }.merge(opts))
     end
 
 end

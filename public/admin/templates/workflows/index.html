@@ -1,0 +1,40 @@
+<div>
+    <div id="workflow-grid"
+        data-role="grid"
+        data-editable="{
+            mode: 'popup',
+            confirmation: true,
+            window: {
+              height: '70%',
+              width: '60%',
+              position: { 
+                top: '7%',
+                left: '7%'
+              },
+              actions: ['minimize','maximize','close']
+            }
+        }"
+        data-toolbar="[{ name: 'create', text: 'Add New Workflow' }]"
+        data-bind="source: workflows, events: { dataBound: dataBound }"
+        data-columns="[
+            {
+                title: 'Title',
+                field: 'title',
+                editor: editors.text
+            },
+            {
+                title: 'Description',
+                field: 'description',
+                editor: editors.textarea
+            },
+            {
+                title: 'Tasks',
+                field: 'tasknames',
+                editor: editors.tasks,
+                template: '#= fields.tasknames.template(tasknames) #'
+            },
+            {
+                command: [{ name: 'show', text: 'Show' },{ name: 'edit', text: 'Edit' },{ name: 'destroy', text: 'Delete' }]
+            }
+        ]"></div>
+</div>

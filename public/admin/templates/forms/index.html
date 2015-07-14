@@ -3,9 +3,10 @@
         data-role="grid"
         data-editable="{
             mode: 'popup',
+            confirmation: true,
             window: {
-              height: '50%',
-              width: '50%',
+              height: '70%',
+              width: '60%',
               position: { 
                 top: '7%',
                 left: '7%'
@@ -16,10 +17,6 @@
         data-toolbar="[{ name: 'create', text: 'Add New Form' }]"
         data-bind="source: forms, events: { dataBound: dataBound }"
         data-columns="[
-            {
-                title: 'Id',
-                field: '_id'
-            },
             {
                 title: 'Name',
                 field: 'name',
@@ -32,17 +29,18 @@
             },
             {
                 title: 'Wrapper Name',
-                field: 'wrapper',
-                editor: editors.text
+                field: 'wrapper_id',
+                editor: editors.wrapper,
+                template: '#= fields.wrappername.template(wrappername) #'
             },
             {
                 title: 'Fields',
-                field: 'form_fields',
-                editor: editors.json,
-                template: '#= fields.form_fields.template(form_fields) #'
+                field: 'field_ids',
+                editor: editors.fields,
+                template: '#= fields.fieldnames.template(fieldnames) #'
             },
             {
-                command: [{ name: 'show', text: 'Show' }]
+                command: [{ name: 'show', text: 'Show' },{ name: 'edit', text: 'Edit' },{ name: 'destroy', text: 'Delete' }]
             }
         ]"></div>
 </div>

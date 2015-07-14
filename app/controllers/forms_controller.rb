@@ -55,6 +55,6 @@ class FormsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def form_params
-      params[:form]
+      params.require(:form).permit(:name,:description,{ :field_ids => [] },:wrapper_id)
     end
 end

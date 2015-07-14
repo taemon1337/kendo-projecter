@@ -1,0 +1,68 @@
+<div>
+    <div id="field-grid"
+        data-role="grid"
+        data-editable="{
+            mode: 'popup',
+            confirmation: true,
+            window: {
+              height: '70%',
+              width: '60%',
+              position: { 
+                top: '7%',
+                left: '7%'
+              },
+              actions: ['minimize','maximize','close']
+            }
+        }"
+        data-toolbar="[{ name: 'create', text: 'Add New Field' }]"
+        data-bind="source: fields, events: { dataBound: dataBound }"
+        data-columns="[
+            {
+                title: 'Field',
+                field: 'name',
+                editor: editors.text
+            },
+            {
+                title: 'Title',
+                field: 'title',
+                editor: editors.text
+            },
+            {
+                title: 'Description',
+                field: 'description',
+                editor: editors.textarea
+            },
+            {
+                title: 'Element',
+                field: 'element',
+                editor: editors.text
+            },
+            {
+                title: 'Attributes',
+                field: 'element_attributes',
+                editor: editors.json,
+                template: '#= fields.element_attributes.template(element_attributes) #'
+            },
+            {
+                title: 'Kendo Role',
+                field: 'kendo_role',
+                editor: editors.text
+            },
+            {
+                title: 'Kendo Opts',
+                field: 'kendo_opts',
+                editor: editors.json,
+                template: '#= fields.kendo_opts.template(kendo_opts) #'
+            },
+            {
+                title: 'Preview',
+                field: '',
+                hidden: true,
+                editor: editors.preview
+                
+            },
+            {
+                command: [{ name: 'show', text: 'Show' },{ name: 'edit', text: 'Edit' },{ name: 'destroy', text: 'Delete' }]
+            }
+        ]"></div>
+</div>
