@@ -8,9 +8,14 @@ define(function(require) {
             _id: { type: "string", nullable: false, editable: false },
             name: { type: "string", editable: true },
             description: { type: "string", editable: true },
-            user_ids: { defaultValue: [], editable: true, nullable: false },
+            fieldname: { type: "string", editable: true },
+            user_ids: { 
+                defaultValue: [], 
+                editable: true, 
+                nullable: false
+            },
             
-            users: { 
+            usernames: { 
                 defaultValue: [],
                 editable: true,
                 template: function(usernames) {

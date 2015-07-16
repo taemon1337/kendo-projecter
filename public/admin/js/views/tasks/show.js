@@ -5,7 +5,7 @@ define(function(require) {
   return {
       view: function(task) {
         var el = $("<div></div>");  
-        var win = windowHelper.open( el, { title: "Task: " + task.title });
+        var win = windowHelper.open( el, { title: "Task: " + task.name });
       }
   }
 });

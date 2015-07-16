@@ -3,7 +3,7 @@ define(function(require) {
     var dataSource      = require('datasources/groups');
     
     return function(container, options) {
-        return $("<select class='full' multiple='multiple' data-bind='value: group_ids'></select>")
+        return $("<select class='full' multiple='multiple' data-bind='value: "+options.field+"'></select>")
             .appendTo(container)
             .kendoMultiSelect({
                 placeholder: "select roles...",

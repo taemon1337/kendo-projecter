@@ -5,24 +5,24 @@ class Project
     field :name, type: String
     field :description, type: String
     
-    field :workflow_ids, type: Array, default: []
-    field :group_ids, type: Array, default: []
+    field :workflow_id, type: String
+    field :group_ids, type: Array, default: []  # the group(s) authorized to manage this project
 
     embeds_one :ownership, as: :ownable
 
-    validates :name, presence: true, length: { in: 5..20 }, format: { with: /^[a-zA-Z0-9 \-]+$/ }
+    validates :name, presence: true, length: { in: 5..50 }, format: { with: /[a-zA-Z0-9 \-]+/ }
     
 #    embeds_one :history
 #    embeds_one :calendar
 #    embeds_many :reports
 #    embeds_many :comments
 
-    def workflows
-        Workflow.find(self.workflow_ids)
+    def workflow
+        Workflow.find(self.workflow_id)
     end
     
-    def workflownames
-        self.workflows.map(&:name) 
+    def workflowname
+        self.workflow.name 
     end
 
     def groups
@@ -34,7 +34,7 @@ class Project
     end
     
     def as_json(opts={})
-        super({ :methods => [:workflownames,:groupnames] }.merge(opts))
+        super({ :methods => [:workflowname,:groupnames] }.merge(opts))
     end
 
 end

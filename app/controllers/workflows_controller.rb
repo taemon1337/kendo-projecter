@@ -55,6 +55,6 @@ class WorkflowsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def form_params
-      params.require(:workflow).permit(:name,:description,{ :task_ids => [] },:ownership)
+      params.require(:workflow).permit(:name,:description,:form_id,{ :task_ids => [] },:ownership)
     end
 end

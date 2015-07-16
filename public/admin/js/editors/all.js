@@ -8,6 +8,8 @@ define(function(require) {
         wrapper:        require("editors/wrapper"),
         tasks:          require("editors/tasks"),
         groups:         require("editors/groups"),
-        users:          require("editors/users")
+        users:          require("editors/users"),
+        workflow:       require("editors/workflow"),
+        form:           require("editors/form")
     }
 });

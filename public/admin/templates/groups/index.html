@@ -28,10 +28,15 @@
                 editor: editors.textarea
             },
             {
+                title: 'Authorized Field Name',
+                field: 'fieldname',
+                editor: editors.text
+            },
+            {
                 title: 'Users',
-                field: 'usernames',
+                field: 'user_ids',
                 editor: editors.users,
-                template: '#= fields.users.template(usernames) #'
+                template: '#= fields.usernames.template(usernames) #'
             },
             {
                 command: [{ name: 'show', text: 'Show' },{ name: 'edit', text: 'Edit' },{ name: 'destroy', text: 'Delete' }]

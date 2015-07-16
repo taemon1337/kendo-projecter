@@ -19,7 +19,7 @@
         data-columns="[
             {
                 title: 'Title',
-                field: 'title',
+                field: 'name',
                 editor: editors.text
             },
             {
@@ -28,8 +28,14 @@
                 editor: editors.textarea
             },
             {
+                title: 'Form',
+                field: 'form_id',
+                editor: editors.form,
+                template: '#= fields.formname.template(formname) #'
+            },
+            {
                 title: 'Tasks',
-                field: 'tasknames',
+                field: 'task_ids',
                 editor: editors.tasks,
                 template: '#= fields.tasknames.template(tasknames) #'
             },

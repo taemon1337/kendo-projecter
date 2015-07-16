@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     resources :tasks, :only => [:index,:create,:update,:destroy]
     resources :users, :only => [:index,:create,:update,:destroy]
     resources :groups, :only => [:index,:create,:update,:destroy]
+    resources :projects, :only => [:index,:create,:update,:destroy]
+    resources :datasources, :only => [:index,:create,:update,:destroy]
   end
     
   root :to => "pages#admin"

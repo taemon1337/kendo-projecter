@@ -55,6 +55,6 @@ class GroupsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def form_params
-      params.require(:group).permit(:name,:description,{ :user_ids => [] })
+      params.require(:group).permit(:name,:description,:fieldname,{ :user_ids => [] })
     end
 end

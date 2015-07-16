@@ -5,7 +5,7 @@ class User
     field :name, type: String
     field :group_ids, type: Array, default: []
     
-    validates :username, presence: true, uniqueness: true, length: { in: 5..20 }, format: { with: /[a-zA-Z0-9]+/ }
+    validates :name, presence: true, uniqueness: true, length: { in: 5..20 }, format: { with: /[a-zA-Z0-9]+/ }
     
     def groups
         Group.find(self.group_ids || [])
