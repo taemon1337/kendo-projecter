@@ -55,6 +55,6 @@ class ProjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def form_params
-      params.require(:project).permit(:name,:description,:workflow_id,{ :group_ids => [] })
+      params.require(:project).permit(:name,:description,:workflow_id,{ :group_ids => [] },:current_task_id)
     end
 end

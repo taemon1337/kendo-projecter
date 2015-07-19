@@ -15,34 +15,34 @@ define(function(require) {
 
             this._initChange = false;
         },
-        
-        change: function() {
+        change: function(e) {
             this._initChange = this.eventName != CHANGE;
-
-            try {
-                var json = JSON.parse( this.element.value );
-                this.bindings[VALUE].set( JSON.stringify(json, null, 4) );
-            } catch(err) {
-                alert("Invalid JSON! \n" + err.message);
-            }
-
-            this._initChange = false;
-        },
         
-        refresh: function() {
-            if (!this._initChange) {
-                var value = this.bindings[VALUE].get();
-
-                if (value == null) {
-                    value = "";
-                }
-
-                this.element.value = value;
+            var val = this.element.value;
+        
+            if(val && this.parseJsonTest(val)) {
+                this.bindings[VALUE].set( val );
             }
-
+        
+            this.initChange = false;
+        },
+        parseJsonTest: function(j) {
+            try {
+                return JSON.parse(j);
+            } catch(e) {
+                alert(e);
+            }
+        },
+        refresh: function(e) {
+            if(!this._initChange) {
+                var value = this.bindings[VALUE].get();
+        
+                if(value) {
+                this.element.value = JSON.stringify(JSON.parse(value), null, 2);
+                }
+            }
             this._initChange = false;
         },
-
         destroy: function() {
             $(this.element).off(this.eventName, this._change);
         }

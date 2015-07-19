@@ -10,7 +10,7 @@ define(function(require) {
                 left: "25%"
             },
             center: true,
-            actions: ['minimize','maximize','close'],
+            actions: ['maximize','close'],
             close: function() {
                this.destroy();
             }

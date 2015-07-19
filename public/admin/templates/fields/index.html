@@ -52,7 +52,7 @@
                 title: 'Kendo Opts',
                 field: 'kendo_opts',
                 editor: editors.json,
-                template: '#= fields.kendo_opts.template(kendo_opts) #'
+                template: '#= HtmlEncode(fields.kendo_opts.template(kendo_opts)) #'
             },
             {
                 title: 'Preview',

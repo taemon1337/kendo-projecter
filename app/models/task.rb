@@ -16,7 +16,7 @@ class Task
     validates :name, presence: true, uniqueness: true, allow_blank: false
 
     def groups
-        Group.find(self.group_ids)
+        @groups ||= Group.find(self.group_ids)
     end
     
     def groupnames

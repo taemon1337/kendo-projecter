@@ -1,0 +1,19 @@
+<div class="container-fluid">
+    
+    <script type="text/html" id="workflow-task-template">
+        <li>
+            <p data-bind="text: name"></p>
+        </li>
+    </script>
+    
+    <div class="row">
+        <div class="col-xs-12">
+            <h3> Workflow Tasks </h3>
+            <ul id='workflow-tasks-list'
+                data-role="listview"
+                data-bind="source: workflow.tasks"
+                data-template="workflow-task-template"
+            ></ul>
+        </div>
+    </div>
+</div>

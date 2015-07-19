@@ -34,6 +34,24 @@
                 template: '#= fields.groupnames.template(groupnames) #'
             },
             {
+                title: 'Required Fields',
+                field: 'required_field_ids',
+                hidden: true,
+                editor: editors.fields
+            },
+            {
+                title: 'Editable/Optional Fields',
+                field: 'editable_field_ids',
+                hidden: true,
+                editor: editors.fields
+            },
+            {
+                title: 'Viewable Fields',
+                field: 'viewable_field_ids',
+                hidden: true,
+                editor: editors.fields
+            },
+            {
                 command: [{ name: 'show', text: 'Show' },{ name: 'edit', text: 'Edit' },{ name: 'destroy', text: 'Delete' }]
             }
         ]"></div>

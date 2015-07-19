@@ -7,93 +7,27 @@ class Datasource
     field :basepath, type: String, default: '/'
     field :basename, type: String, default: -> { name.pluralize }
     
-    field :read_options, type: Hash, default: {}
-    field :create_options, type: Hash, default: {}
-    field :update_options, type: Hash, default: {}
-    field :destroy_options, type: Hash, default: {}
+    field :schema, type: Hash, default: -> { { data: name.pluralize, total: "total", id: '_id' } }
     
-    def kendo_options
-        return {
-            schema: {
-                data: self.basename,
-                total: "total",
-                model: {
-                    id: "_id"
-                }
-            },
-            transport: {
-                read: self.read_options,
-                create: self.create_options,
-                update: self.update_options,
-                destroy: self.destroy_options,
-                parameterMap: self.parameterMap_function
-            },
-            error: self.error_function,
-            requestEnd: self.requestEnd_function
-        }
-    end
+    field :dataType, type: String, default: 'json'
+    field :contentType, type: String, default: 'application/json'
     
-    def url
-        File.join(self.host.to_s,self.basepath,self.basename).gsub('//','/')
-    end
-
-    def read_options
-       self.default_read_options.merge(self.read_attribute(:read_options))
-    end
     
-    def create_options
-       self.default_create_options.merge(self.read_attribute(:create_options))
-    end
+    field :read_url, type: String, default: -> { name.pluralize }
+    field :create_url, type: String, default: -> { File.join(basepath,name.pluralize) }
+    field :update_url, type: String, default: -> { File.join(basepath,name.pluralize,_id) }
+    field :destroy_url, type: String, default: -> { File.join(basepath,name.pluralize,_id) }
     
-    def update_options
-       self.default_update_options.merge(self.read_attribute(:update_options))
-    end
+    field :read_method, type: String, default: :GET
+    field :create_method, type: String, default: :POST
+    field :update_method, type: String, default: :PUT
+    field :destroy_method, type: String, default: :DELETE
     
-    def destroy_options
-       self.default_destroy_options.merge(self.read_attribute(:destroy_options))
-    end
-
-    def default_read_options
-        {
-            url: self.url,
-            method: "GET",
-            dataType: "json",
-            contentType: "application/json"
-        }
-    end
+    field :parameterMap, type: String, default: -> { default_parameterMap_function }
+    field :error_function, type: String, default: -> { default_error_function }
+    field :requestEnd, type: String, default: -> { default_requestEnd_function }
     
-    def default_create_options
-        {
-            url: self.url,
-            method: "POST",
-            dataType: "json",
-            contentType: "application/json"
-        }
-    end
-    
-    def default_update_options
-        {
-            url: self.access_function,
-            method: "PUT",
-            dataType: "json",
-            contentType: "application/json"
-        }
-    end
-    
-    def default_destroy_options
-        {
-            url: self.access_function,
-            method: "DELETE",
-            dataType: "json",
-            contentType: "application/json"
-        }
-    end
-    
-    def access_function
-        "function(data) { return \"#{self.url}/data._id\" }"
-    end
-    
-    def parameterMap_function
+    def default_parameterMap_function
        "function(type, data) { 
            if(type === 'create' || type === 'update') {
                return JSON.stringify({ #{self.basename.singularize}: data })
@@ -101,20 +35,43 @@ class Datasource
        }"
     end
 
-    def error_function
+    def default_error_function
         "function(resp) {
             console.log('Error with #{self.basename}:', resp);
         }"
     end
 
-    def requestEnd_function
+    def default_requestEnd_function
         "function(resp) {
             console.log('Request End for #{self.basename}', resp);
         }"
     end
 
     def as_json(opts={})
-        super({ :methods => [:kendo_options] }.merge(opts))
+        super({ :methods => [] }.merge(opts))
+    end
+
+    def self.permitted_attributes
+        [
+            :name,
+            :host,
+            :basename,
+            :basepath,
+            :schema,
+            :dataType,
+            :contentType,
+            :read_url,
+            :create_url,
+            :update_url,
+            :destroy_url,
+            :read_method,
+            :create_method,
+            :update_method,
+            :destroy_method,
+            :parameterMap,
+            :error_function,
+            :requestEnd
+        ]
     end
 
 end

@@ -8,7 +8,7 @@ class Form
     field :field_ids, type: Array, default: []
 
     def wrapper
-        Wrapper.find(self.wrapper_id) rescue nil
+        @wrapper ||= Wrapper.find(self.wrapper_id) rescue nil
     end
     
     def wrappername
@@ -17,7 +17,7 @@ class Form
     
     # use form_fields since just fields is used by Rails
     def form_fields
-        Field.find(self.field_ids || [])
+        @form_fields ||= Field.find(self.field_ids || [])
     end
     
     def fieldnames

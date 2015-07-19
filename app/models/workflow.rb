@@ -14,7 +14,7 @@ class Workflow
 #    validates :owner_id, presence: true, allow_blank: false
     
     def tasks
-       Task.find(self.task_ids)
+       @tasks ||= Task.find(self.task_ids)
     end
     
     def tasknames
@@ -22,7 +22,7 @@ class Workflow
     end
     
     def form
-        Form.find(self.form_id) rescue nil
+        @form ||= Form.find(self.form_id) rescue nil
     end
     
     def formname

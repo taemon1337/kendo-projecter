@@ -3,7 +3,7 @@ define(function(require) {
     var dataSource      = require('datasources/fields');
     
     return function(container, options) {
-        return $("<select class='full' multiple='multiple' data-bind='value: field_ids'></select>")
+        return $("<select class='full' multiple='multiple' data-bind='value: "+options.field+"'></select>")
             .appendTo(container)
             .kendoMultiSelect({
                 placeholder: "select fields...",

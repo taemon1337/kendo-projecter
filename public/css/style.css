@@ -2,3 +2,9 @@
     width: 100%;
 }
 .k-window .row, .k-window .row * { box-sizing: border-box; }
+
+/* Show stacked window siblings with margin between */
+.k-window + .k-window {
+    margin-top: 25px;
+    margin-left: 25px;
+}

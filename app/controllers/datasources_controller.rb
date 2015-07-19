@@ -55,6 +55,6 @@ class DatasourcesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def form_params
-      params.require(:datasource).permit(:name,:host,:basepath,:basename,:read_options,:create_options,:update_options,:destroy_options)
+      params.require(:datasource).permit(Datasource.permitted_attributes)
     end
 end

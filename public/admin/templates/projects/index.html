@@ -34,6 +34,12 @@
                 template: '#= fields.workflowname.template(workflowname) #'
             },
             {
+                title: 'Current Task',
+                field: 'current_task_id',
+                editor: editors.task,
+                template: '#= fields.current_taskname.template(current_taskname) #'
+            },
+            {
                 title: 'Managers',
                 field: 'group_ids',
                 editor: editors.groups,

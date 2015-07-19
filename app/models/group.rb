@@ -10,7 +10,7 @@ class Group
     validates :name, presence: true, uniqueness: true, length: { in: 5..20 }, format: { with: /[a-zA-Z0-9 \-]+/ }
     
     def users
-        User.find(self.user_ids || [])
+        @user ||= User.find(self.user_ids || [])
     end
     
     def usernames
